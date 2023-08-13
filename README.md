@@ -1,6 +1,7 @@
 # Shelly Kyono's SQL Portfolio
 **Hello and welcome to my SQL Portfolio! This code repository represents examples of SQL I've written.
 Feel free to check it out and contact me through email if you have any questions:**
+## KyonoBITech@gmail.com
 
 CREATE TABLE mystical_crafts (id INTEGER PRIMARY KEY, item TEXT, ordered INTEGER, price INTEGER, purchased INTEGER, returned INTEGER, write_off INTEGER);
 
