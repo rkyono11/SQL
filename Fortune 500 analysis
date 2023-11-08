@@ -1,0 +1,40 @@
+/*which companies had the highest revenue?*/
+  
+SELECT industry, MAX(revenue) AS highest_revenue 
+  FROM fortune_companies
+  GROUP BY industry
+  ORDER BY highest_revenue desc;
+
+/*which companies have over 22 hours of paid time off?*/
+
+SELECT company_name, MAX(paid_time_off_days) AS pto
+  FROM fortune_companies
+  GROUP BY company_name
+  HAVING pto >22;
+  
+/*which companies had healthcare benefits and at least 14 maternity leave weeks?*/
+
+SELECT company_name, industry, healthcare_benefits, maternity_leave_weeks
+  FROM fortune_companies
+  WHERE healthcare_benefits=1 
+  AND maternity_leave_weeks>=14;
+  
+
+/*Show companies that have more than 4000 employees or their employees that stayed with the company more than 7 years.
+Do more employees affect tenure?*/
+SELECT company_name, industry, employees, avg_employee_tenure
+  FROM fortune_companies
+  WHERE employees>4000
+  OR avg_employee_tenure>=7
+  ORDER BY avg_employee_tenure desc;
+  
+/*Present all technology companies with a tenure rating*/  
+SELECT company_name,
+  CASE
+    WHEN avg_employee_tenure>=7 THEN 'High Tenure'
+    WHEN avg_employee_tenure>=5 THEN 'Low Tenure'
+    ELSE 'Unsatisfactory Tenure'
+    END as tenure_rating
+FROM fortune_companies
+   WHERE industry='Technology';
+
