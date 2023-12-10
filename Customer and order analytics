@@ -69,3 +69,52 @@ LEFT JOIN BIT_DB.customers AS cust
     WHERE Feb.Quantity>2
     AND length(orderid)=6
     AND orderid<>'Order ID';
+
+
+/*What are the order dates that are between February 13, 2019 through February 18th, 2019?*/
+SELECT orderdate
+    FROM BIT_DB.FebSales
+    WHERE orderdate 
+        between '02/13/19 00:00' 
+            AND '02/18/19 00:00';
+            
+
+
+
+/*What is the location of the order date February 18th, 2019 at 01:35?*/
+SELECT location
+    FROM BIT_DB.FebSales
+    WHERE orderdate='02/18/19 01:35'
+    
+
+
+
+/*What is the total amount of orders made on February 18th, 2019?*/
+SELECT SUM(quantity)
+    FROM BIT_DB.FebSales
+    WHERE orderdate LIKE '02/18/19%';
+ 
+
+
+
+/*What are all the different batteries that were purchased during February?*/
+SELECT distinct Product
+    FROM BIT_DB.FebSales
+    WHERE Product LIKE '%Batteries%';
+    
+
+
+
+/*Which different products during February were priced with $.99?*/
+SELECT distinct Product, Price
+    FROM BIT_DB.FebSales
+    WHERE Price LIKE '%.99'; 
+    
+
+/*List all the products sold in Los Angeles in February, and include how many of each were sold.*/
+SELECT Product, SUM(quantity)
+    FROM BIT_DB.FebSales
+    WHERE location LIKE '%los Angeles%'
+    GROUP BY Product;
+    
+
